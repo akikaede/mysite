@@ -1,0 +1,6 @@
+*.py?
+*~
+db.sqlite3
+/.settings
+/.project
+/.pydevproject
