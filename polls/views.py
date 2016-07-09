@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import loader
+from django.template import loader, RequestContext
 from django.core.urlresolvers import reverse
 from django.views import generic
 
-from .models import Question, Choice
+from .models import Question, Choice, Genre
 
 # Create your views here.
 
@@ -85,4 +85,14 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+
+def show_genres(request):
+    return render_to_response(
+        "polls/genres.html",
+        {
+           'nodes' : Genre.objects.all()
+        },
+        context_instance=RequestContext(request)
+    )
 
